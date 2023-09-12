@@ -1,0 +1,268 @@
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+NAME- AYUSH SURENDRA ACHARYA 			SUB- DBMSL	
+
+CLASS - TE 1
+
+BATCH- Q
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+1. Find the names of all branches in loan relation.
+
+Query :-> select branch_name from loan;
+
++-------------+
+| branch_name |
++-------------+
+| AKURDI      |
+| AKURDI      |
+| CAMP        |
+| KHADKI      |
+| NAVI MUMBAI |
+| NAVI MUMBAI |
+| SANTA CRUZ  |
+| SANTA CRUZ  |
+| STATION     |
++-------------+
+9 rows in set (0.01 sec)
+
+
+2. Find all loan numbers for loans made at Akurdi Branch with loan amount > 12000.
+
+Query:-> select loan_no from Loan where branch_name='Akurdi' and amount > 12000;
++---------+
+| loan_no |
++---------+
+|     202 |
++---------+
+1 row in set (0.03 sec)
+
+
+
+3. Find all customers who have a loan from bank. Find their names,loan_no and loan amount.
+
+Query:->   select borrower.cust_name,borrower.loan_no,loan.amount from borrower,loan where borrower.loan_no=loan.loan_no;
++-------------------+---------+--------+
+| cust_name         | loan_no | amount |
++-------------------+---------+--------+
+| ADESH PARDESHI    |     101 |  15000 |
+| RIDDHI SANGHVI    |     102 | 100000 |
+| SHARVARI KULKARNI |     103 |  10000 |
+| ANKITA KAMBLI     |     201 |  12000 |
+| APOORV SHAH       |     301 |  20000 |
+| NIDA SHAIKH       |     302 |  20000 |
+| PRIYANKA LOKHANDE |     303 |  60000 |
+| YOJNA GADIYA      |     304 |  60000 |
+| RIDDHI RUNWAL     |     202 |  50000 |
++-------------------+---------+--------+
+9 rows in set (0.02 sec)
+
+
+4.List all customers in alphabetical order who have loan from Akurdi branch
+
+Query:->  select borrower.cust_name,loan.branch_name from borrower,loan where loan.loan_no=borrower.loan_no and branch_name="Akurdi" order by borrower.cust_name asc;
++---------------+-------------+
+| cust_name     | branch_name |
++---------------+-------------+
+| ANKITA KAMBLI | AKURDI      |
+| RIDDHI RUNWAL | AKURDI      |
++---------------+-------------+
+2 rows in set (0.00 sec)
+
+
+5. Find all customers who have an account or loan or both at bank. 
+
+Query:->  select cust_name from customer union select cust_name from borrower;
++-------------------+
+| cust_name         |
++-------------------+
+| ADESH PARDESHI    |
+| ANKITA KAMBLI     |
+| APOORV SHAH       |
+| DHIREN JAIN       |
+| NIDA SHAIKH       |
+| PRIYANKA LOKHANDE |
+| RIDDHI RUNWAL     |
+| RIDDHI SANGHVI    |
+| SHARVARI KULKARNI |
+| SIKHA JAISWAL     |
+| SOHAM BHOJ        |
+| YOJNA GADIYA      |
++-------------------+
+12 rows in set (0.01 sec)
+
+
+
+6. Find all customers who have both account and loan at bank.
+
+Query:-> select customer.cust_name from customer,borrower where customer.cust_name=borrower.cust_name;
++-------------------+
+| cust_name         |
++-------------------+
+| ADESH PARDESHI    |
+| ANKITA KAMBLI     |
+| APOORV SHAH       |
+| NIDA SHAIKH       |
+| PRIYANKA LOKHANDE |
+| RIDDHI RUNWAL     |
+| RIDDHI SANGHVI    |
+| SHARVARI KULKARNI |
+| YOJNA GADIYA      |
++-------------------+
+9 rows in set (0.00 sec)
+
+		OR
+
+ select customer.cust_name from customer join borrower on customer.cust_name=borrower.cust_name;
++-------------------+
+| cust_name         |
++-------------------+
+| ADESH PARDESHI    |
+| ANKITA KAMBLI     |
+| APOORV SHAH       |
+| NIDA SHAIKH       |
+| PRIYANKA LOKHANDE |
+| RIDDHI RUNWAL     |
+| RIDDHI SANGHVI    |
+| SHARVARI KULKARNI |
+| YOJNA GADIYA      |
++-------------------+
+9 rows in set (0.00 sec)
+
+
+
+7.Find all customers who have account but no loan at the bank.
+
+Query:->  select customer.cust_name from customer left join borrower on customer.cust_name=borrower.cust_name where borrower.loan_no is null;
++---------------+
+| cust_name     |
++---------------+
+| DHIREN JAIN   |
+| SIKHA JAISWAL |
+| SOHAM BHOJ    |
++---------------+
+3 rows in set (0.00 sec)
+
+
+8. Find the average account balance at each branch.
+
+Query:->  select branch_name,avg (balance) from account group by branch_name ;
++-------------+---------------+
+| branch_name | avg (balance) |
++-------------+---------------+
+| AKURDI      |    65500.0000 |
+| CAMP        |    60000.0000 |
+| KHADKI      |    10000.0000 |
+| NAVI MUMBAI |    27333.3333 |
+| SANTA CRUZ  |    16000.0000 |
+| STATION     |   115000.0000 |
++-------------+---------------+
+6 rows in set (0.01 sec)
+
+9. Find no. of depositors at each branch.
+
+Query:->  select account.branch_name,count(cust_name) from depositor join account on depositor.acc_no=account.acc_no group by branch_name;
++-------------+------------------+
+| branch_name | count(cust_name) |
++-------------+------------------+
+| CAMP        |                1 |
+| STATION     |                2 |
+| AKURDI      |                4 |
+| NAVI MUMBAI |                3 |
+| SANTA CRUZ  |                1 |
+| KHADKI      |                1 |
++-------------+------------------+
+6 rows in set (0.01 sec)
+
+
+10. Find name of Customer and city where customer name starts with Letter P.
+
+Query:->  select cust_name,cust_city from customer where cust_name like "P%";
++-------------------+-----------+
+| cust_name         | cust_city |
++-------------------+-----------+
+| PRIYANKA LOKHANDE | MUMBAI    |
++-------------------+-----------+
+1 row in set (0.00 sec)
+
+
+11.Display distinct cities of branch.
+
+Query :->  select distinct branch_city from branch;
++-------------+
+| branch_city |
++-------------+
+| NIGDI       |
+| PUNE        |
+| MUMBAI      |
++-------------+
+3 rows in set (0.02 sec)
+
+
+12. Find the branches where average account balance > 12000.
+
+Query:->  select branch_name,avg(balance) from account group by branch_name having avg(balance)>12000;
++-------------+--------------+
+| branch_name | avg(balance) |
++-------------+--------------+
+| AKURDI      |   65500.0000 |
+| CAMP        |   60000.0000 |
+| NAVI MUMBAI |   27333.3333 |
+| SANTA CRUZ  |   16000.0000 |
+| STATION     |  115000.0000 |
++-------------+--------------+
+5 rows in set (0.00 sec)
+
+
+13.Find number of tuples in customer relation.
+
+Query:-> select count(*) as no_of_tuples from customer;
++--------------+
+| no_of_tuples |
++--------------+
+|           12 |
++--------------+
+1 row in set (0.01 sec)
+
+
+14.Calculate total loan amount given by bank. 
+
+Query:->   select sum(amount) as Total_loan_amount from loan;
++-------------------+
+| Total_loan_amount |
++-------------------+
+|            347000 |
++-------------------+
+1 row in set (0.00 sec)
+
+
+15. Delete all loans with loan amount between 1300 and 1500. 
+
+Query:->  delete from loan where amount in (1300,1500);
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from loan;
++---------+-------------+--------+
+| loan_no | branch_name | amount |
++---------+-------------+--------+
+|     101 | CAMP        |  15000 |
+|     102 | STATION     | 100000 |
+|     103 | KHADKI      |  10000 |
+|     201 | AKURDI      |  12000 |
+|     202 | AKURDI      |  50000 |
+|     301 | NAVI MUMBAI |  20000 |
+|     302 | SANTA CRUZ  |  20000 |
+|     303 | SANTA CRUZ  |  60000 |
+|     304 | NAVI MUMBAI |  60000 |
++---------+-------------+--------+
+9 rows in set (0.00 sec)
+
+
+16. Delete all tuples at every branch located in Nigdi.
+
+Query:-> delete from account where branch_name in (select branch_name from branch where branch_city="NIGDI");
+ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`bank`.`depositor`, CONSTRAINT `depositor_ibfk_2` FOREIGN KEY (`acc_no`) REFERENCES `account` (`Acc_no`)).
+
