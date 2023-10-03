@@ -8,13 +8,7 @@ INSERT INTO STUD_MARKS VALUES (37,'AYUSH ACHARYA',987);*/
 
 SELECT * FROM STUD_MARKS;
 
-DECLARE
-	temp_marks number(5);
-	temp_name varchar2(20);
-	temp_roll number(5);
-
-BEGIN
-	CREATE PROCEDURE proc_GRADE @marks number(5),@name varchar2(20),roll number(5)
+CREATE PROCEDURE proc_GRADE @marks number(5),@name varchar2(20),roll number(5)
 	AS
 	BEGIN
     	SELECT Total_Marks,Student_Name,Roll_no
@@ -34,9 +28,18 @@ BEGIN
 		ELSE
 			DBMS_OUTPUT.PUT_LINE(name || 'has FAILED ');
 
-	END
+	END;
+
+
+DECLARE
+	temp_marks number(5);
+	temp_name varchar2(20);
+	temp_roll number(5);
+
+	
+BEGIN
+	
 
 	EXEC proc_GRADE @marks=700,@name='DHRUV PANDIT',@roll=20
 
 END;
-
