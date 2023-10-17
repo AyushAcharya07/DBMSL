@@ -26,7 +26,7 @@ BEGIN
 	
 	IF (new_var.Roll_No=Roll) THEN
 		INSERT INTO N_ROLL_CALL VALUES(new_var.Roll_No,new_var.Name);
-		ch:=1;
+		CH:=1;
 	END IF;
 	
 	END LOOP;
@@ -42,4 +42,4 @@ BEGIN
 END;
 /
 SELECT * FROM N_ROLL_CALL;
-	
+	--just put serveroutput on  --before execution in sql*plus terminal
