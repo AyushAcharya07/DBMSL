@@ -216,7 +216,7 @@ class Student:
             messagebox.showinfo("Success !!","Records added Successfully!!")
 
     def fetch_data(self):
-        con = pymysql.connect(host="localhost", user="root", password="Vaishu@1512", db="students")
+        con = pymysql.connect(host="localhost", user="root", password="", db="students") # here in password field enter your password
         cur = con.cursor()
         cur.execute("SELECT * FROM stud_data")
         row=cur.fetchall()
@@ -277,7 +277,7 @@ class Student:
             messagebox.showinfo("Success !!","Record updated successfully!!")
 
     def search_data(self):
-        con = pymysql.connect(host="localhost", user="root", password="Vaishu@1512", db="students")
+        con = pymysql.connect(host="localhost", user="root", password="", db="students") # here in password field enter your password
         cur = con.cursor()
         cur.execute("SELECT * FROM stud_data WHERE " + str(self.search_by.get()) + " LIKE '%" + str(self.search_txt.get()) + "%'")
         row=cur.fetchall()
