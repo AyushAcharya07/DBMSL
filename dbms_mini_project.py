@@ -1,3 +1,5 @@
+-- @ AYUSH ACHARYA TE 1
+
 from tkinter import *
 from tkinter import ttk
 import pymysql
