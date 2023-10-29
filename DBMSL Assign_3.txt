@@ -1,3 +1,5 @@
+@ Ayush Acharya TE 1
+
 1. Create a View1 to display List all customers in alphabetical order who have loan from Pune_Station branch.
 Query:-> 
 	create view view_1 as select loan.branch_name,borrower.cust_name from loan,borrower where loan.loan_no=borrower.loan_no and loan.branch_name="STATION";
