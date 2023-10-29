@@ -2,4 +2,4 @@
 
 #### 2. This Project is Licensed under the Apache [License](https://github.com/AyushAcharya07/DBMSL/blob/main/LICENSE) 2.0. ####
 
-#### 3. If you are using my Repository, please start it. ;) ####
+
