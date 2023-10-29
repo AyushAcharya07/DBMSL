@@ -1,3 +1,5 @@
+# @AYUSH ACHARYA TE 1
+
 import mysql.connector 
 p=mysql.connector.connect(
     host="localhost",
