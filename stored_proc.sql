@@ -1,3 +1,5 @@
+-- @AYUSH ACHARYA TE 1
+
 CREATE TABLE STUD_MARKS(Roll_no number(10) PRIMARY KEY, Student_Name varchar2(20), Total_Marks number(5));
 CREATE TABLE RESULT(Roll_no number(10), Student_Name varchar2(20), Class varchar(20), FOREIGN KEY(Roll_no) REFERENCES STUD_MARKS(Roll_no));
 
