@@ -1,3 +1,5 @@
+-- @ AYUSH ACHARYA TE 1    
+
 /*CREATE TABLE BORROWER (Roll_no number(10) PRIMARY KEY,Name varchar2(20),Date_of_issue Date,Book_name varchar2(30),Status char(1));
 CREATE TABLE FINE(Roll_no number(10),Date_of_Return Date,Amount number(5),FOREIGN KEY(Roll_no) REFERENCES BORROWER(Roll_no));*/
 /*INSERT INTO BORROWER VALUES(20,'SHIVA SRESHTH',TO_DATE('12-09-2022','DD-MM-YYYY'),'NIRALI','I');
